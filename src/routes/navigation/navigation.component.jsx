@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { ReactComponent as EcomLogo } from '../../assets/crown.svg';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
@@ -16,10 +16,14 @@ import {
   NavLink,
   LogoContainer,
 } from './navigation.styles';
+import { signOutStart } from '../../store/user/user.action';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectIsCartOpen);
+
+  const signOutUser = () => dispatch(signOutStart());
 
   return (
     <Fragment>
